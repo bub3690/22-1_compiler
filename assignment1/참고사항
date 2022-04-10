@@ -1,0 +1,10 @@
+참고사항
+
+설치 : http://egloos.zum.com/ZEED/v/2137852
+
+기초 실행 c++
+#lex 파일 작성해두고
+flex spec.l #c언어 파일 생성
+g++ lex.yy.c -o 아웃파일명 -ll #컴파일
+./a.out < text.txt
+
