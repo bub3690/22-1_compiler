@@ -15,14 +15,19 @@ using namespace std;
 
 
 %}
-/*regular definition/ num이 int를 구성하는 부분. 음수는 -로 시작하거나,*/
+ /*
+    regular definition 
+    num이 int를 구성하는 부분.
+    부호가 없으면 양수로 취급.  
+    음수는 -로 시작하는 것.(예시중에 -로 시작되는 것이 있어서 넣어줬다. 과제수정으로 사용x)
+ */
 %option yylineno
 delim [ \t\n]
 ws {delim}+
-
 digit [0-9]
 positive_num (0|[1-9]{digit}*)
 negative_num ^[-]?[1-9]{digit}*
+oper_duplicated [-+]{2,}
 oper [+-]
 
 
@@ -36,22 +41,20 @@ oper [+-]
 {positive_num} { return NUM;}
 {negative_num} { return NUM;}
 {oper} {return OPER;}
+
+{oper_duplicated} {return ERRORS;}
 . {return ERRORS;}
 %%
 
  /*aux function*/
-
-
-
-
 int main(){
     /*
     알고리즘: 스택을 이용해 중위 표기법 -> 후위 표기법 
     - 피연산자는 그대로 출력한다.
     - 연산자가 들어오면, 스택안에 있는 연산자를 출력시키고 자신을 push 한다.
     - token을 모두 받아왔다면, 스택이 비어있는지 체크하고 남은 연산자 출력.
-
     - 한번에 출력하기위해 출력 리스트인 output_list를 생성.
+    - 연속된 연산자가 입력되는 경우
     */
     
     int token;
@@ -60,6 +63,7 @@ int main(){
     list<string>::iterator list_iter;
 
     while((token = yylex())){
+        cout<<token<<" ";
         switch(token){
             case OPER:
                 if(operator_stack.empty()){

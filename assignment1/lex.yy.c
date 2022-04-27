@@ -370,8 +370,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 6
-#define YY_END_OF_BUFFER 7
+#define YY_NUM_RULES 7
+#define YY_END_OF_BUFFER 8
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -379,10 +379,10 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[18] =
+static const flex_int16_t yy_accept[20] =
     {   0,
-        0,    0,    7,    5,    1,    1,    4,    2,    2,    4,
-        2,    1,    2,    3,    2,    3,    0
+        0,    0,    8,    6,    1,    1,    4,    2,    2,    4,
+        2,    1,    5,    2,    3,    2,    5,    3,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -419,41 +419,41 @@ static const YY_CHAR yy_ec[256] =
 
 static const YY_CHAR yy_meta[8] =
     {   0,
-        1,    2,    2,    1,    1,    3,    3
+        1,    2,    2,    3,    3,    4,    4
     } ;
 
-static const flex_int16_t yy_base[22] =
+static const flex_int16_t yy_base[26] =
     {   0,
-        0,    3,   15,   16,    0,    0,   16,   16,    0,    7,
-        0,    0,    0,    0,    0,    0,   16,   11,    9,    8,
-        6
+        0,    3,   17,   18,    0,    0,    0,   18,    0,    9,
+        0,    0,    0,    0,    0,    0,    0,    0,   18,   13,
+       11,    9,    8,    8,    5
     } ;
 
-static const flex_int16_t yy_def[22] =
+static const flex_int16_t yy_def[26] =
     {   0,
-       17,    1,   17,   17,   18,   18,   17,   17,   19,   17,
-       20,   18,   19,   21,   20,   21,    0,   17,   17,   17,
-       17
+       19,    1,   19,   19,   20,   20,   21,   19,   22,   21,
+       23,   20,   24,   22,   25,   23,   24,   25,    0,   19,
+       19,   19,   19,   19,   19
     } ;
 
-static const flex_int16_t yy_nxt[24] =
+static const flex_int16_t yy_nxt[26] =
     {   0,
-        4,    5,    6,    7,    7,    8,    9,   10,   16,   11,
-       15,   13,   12,   14,   17,    3,   17,   17,   17,   17,
-       17,   17,   17
+        4,    5,    6,    7,    7,    8,    9,   10,   18,   11,
+       17,   16,   14,   13,   12,   15,   19,    3,   19,   19,
+       19,   19,   19,   19,   19
     } ;
 
-static const flex_int16_t yy_chk[24] =
+static const flex_int16_t yy_chk[26] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    2,   21,    2,
-       20,   19,   18,   10,    3,   17,   17,   17,   17,   17,
-       17,   17,   17
+        1,    1,    1,    1,    1,    1,    1,    2,   25,    2,
+       24,   23,   22,   21,   20,   10,    3,   19,   19,   19,
+       19,   19,   19,   19,   19
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static const flex_int32_t yy_rule_can_match_eol[7] =
+static const flex_int32_t yy_rule_can_match_eol[8] =
     {   0,
-1, 0, 0, 0, 0, 0,     };
+1, 0, 0, 0, 0, 0, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -487,8 +487,14 @@ using namespace std;
 
 
 #line 490 "lex.yy.c"
-/*regular definition/ num이 int를 구성하는 부분. 음수는 -로 시작하거나,*/
-#line 492 "lex.yy.c"
+#line 19 "in2post_lex.l"
+ /*
+    regular definition 
+    num이 int를 구성하는 부분.
+    부호가 없으면 양수로 취급.  
+    음수는 -로 시작하는 것.(예시중에 -로 시작되는 것이 있어서 넣어줬다. 과제수정으로 사용x)
+ */
+#line 498 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -708,15 +714,14 @@ YY_DECL
 		}
 
 	{
-#line 29 "in2post_lex.l"
+#line 35 "in2post_lex.l"
 
-#line 31 "in2post_lex.l"
  /*transition rule
     yyleng: length of the lexeme
     yylval : token attribute를 담아서 넘긴다.
     yytext : pointer to lexemeBegin
  */
-#line 720 "lex.yy.c"
+#line 725 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -744,13 +749,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 18 )
+				if ( yy_current_state >= 20 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 16 );
+		while ( yy_base[yy_current_state] != 18 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -787,35 +792,40 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 36 "in2post_lex.l"
+#line 41 "in2post_lex.l"
 {}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 37 "in2post_lex.l"
+#line 42 "in2post_lex.l"
 { return NUM;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 38 "in2post_lex.l"
+#line 43 "in2post_lex.l"
 { return NUM;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 39 "in2post_lex.l"
+#line 44 "in2post_lex.l"
 {return OPER;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 40 "in2post_lex.l"
+#line 45 "in2post_lex.l"
 {return ERRORS;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 41 "in2post_lex.l"
+#line 46 "in2post_lex.l"
+{return ERRORS;}
+	YY_BREAK
+case 7:
+YY_RULE_SETUP
+#line 47 "in2post_lex.l"
 ECHO;
 	YY_BREAK
-#line 819 "lex.yy.c"
+#line 829 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1113,7 +1123,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 18 )
+			if ( yy_current_state >= 20 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1141,11 +1151,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 18 )
+		if ( yy_current_state >= 20 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 17);
+	yy_is_jam = (yy_current_state == 19);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1834,22 +1844,18 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 41 "in2post_lex.l"
+#line 47 "in2post_lex.l"
 
 
  /*aux function*/
-
-
-
-
 int main(){
     /*
     알고리즘: 스택을 이용해 중위 표기법 -> 후위 표기법 
     - 피연산자는 그대로 출력한다.
     - 연산자가 들어오면, 스택안에 있는 연산자를 출력시키고 자신을 push 한다.
     - token을 모두 받아왔다면, 스택이 비어있는지 체크하고 남은 연산자 출력.
-
     - 한번에 출력하기위해 출력 리스트인 output_list를 생성.
+    - 연속된 연산자가 입력되는 경우
     */
     
     int token;
@@ -1858,6 +1864,7 @@ int main(){
     list<string>::iterator list_iter;
 
     while((token = yylex())){
+        cout<<token<<" ";
         switch(token){
             case OPER:
                 if(operator_stack.empty()){
