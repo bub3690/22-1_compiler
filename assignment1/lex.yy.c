@@ -382,7 +382,7 @@ struct yy_trans_info
 static const flex_int16_t yy_accept[20] =
     {   0,
         0,    0,    8,    6,    1,    1,    4,    2,    2,    4,
-        2,    1,    5,    2,    3,    2,    5,    3,    0
+        2,    1,    0,    5,    2,    3,    2,    3,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -422,38 +422,38 @@ static const YY_CHAR yy_meta[8] =
         1,    2,    2,    3,    3,    4,    4
     } ;
 
-static const flex_int16_t yy_base[26] =
+static const flex_int16_t yy_base[25] =
     {   0,
-        0,    3,   17,   18,    0,    0,    0,   18,    0,    9,
-        0,    0,    0,    0,    0,    0,    0,    0,   18,   13,
-       11,    9,    8,    8,    5
+        0,    3,   20,   21,    0,    0,    9,   21,    0,   12,
+        0,    0,    0,    0,    0,    0,    0,    0,   21,   16,
+       13,   12,   12,    5
     } ;
 
-static const flex_int16_t yy_def[26] =
+static const flex_int16_t yy_def[25] =
     {   0,
-       19,    1,   19,   19,   20,   20,   21,   19,   22,   21,
-       23,   20,   24,   22,   25,   23,   24,   25,    0,   19,
-       19,   19,   19,   19,   19
+       19,    1,   19,   19,   20,   20,   19,   19,   21,    7,
+       22,   20,    7,   23,   21,   24,   22,   24,    0,   19,
+       19,   19,   19,   19
     } ;
 
-static const flex_int16_t yy_nxt[26] =
+static const flex_int16_t yy_nxt[29] =
     {   0,
         4,    5,    6,    7,    7,    8,    9,   10,   18,   11,
-       17,   16,   14,   13,   12,   15,   19,    3,   19,   19,
-       19,   19,   19,   19,   19
+       13,   13,   14,   14,   14,   17,   15,   12,   16,   19,
+        3,   19,   19,   19,   19,   19,   19,   19
     } ;
 
-static const flex_int16_t yy_chk[26] =
+static const flex_int16_t yy_chk[29] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    2,   25,    2,
-       24,   23,   22,   21,   20,   10,    3,   19,   19,   19,
-       19,   19,   19,   19,   19
+        1,    1,    1,    1,    1,    1,    1,    2,   24,    2,
+        7,    7,    7,    7,   23,   22,   21,   20,   10,    3,
+       19,   19,   19,   19,   19,   19,   19,   19
     } ;
 
 /* Table of booleans, true if rule could match eol. */
 static const flex_int32_t yy_rule_can_match_eol[8] =
     {   0,
-1, 0, 0, 0, 0, 0, 0,     };
+1, 0, 0, 0, 1, 0, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -755,7 +755,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 18 );
+		while ( yy_base[yy_current_state] != 21 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -811,21 +811,22 @@ YY_RULE_SETUP
 {return OPER;}
 	YY_BREAK
 case 5:
-YY_RULE_SETUP
-#line 45 "in2post_lex.l"
-{return ERRORS;}
-	YY_BREAK
-case 6:
+/* rule 5 can match eol */
 YY_RULE_SETUP
 #line 46 "in2post_lex.l"
 {return ERRORS;}
 	YY_BREAK
-case 7:
+case 6:
 YY_RULE_SETUP
 #line 47 "in2post_lex.l"
+{return ERRORS;}
+	YY_BREAK
+case 7:
+YY_RULE_SETUP
+#line 48 "in2post_lex.l"
 ECHO;
 	YY_BREAK
-#line 829 "lex.yy.c"
+#line 830 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1844,7 +1845,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 47 "in2post_lex.l"
+#line 48 "in2post_lex.l"
 
 
  /*aux function*/
@@ -1864,7 +1865,6 @@ int main(){
     list<string>::iterator list_iter;
 
     while((token = yylex())){
-        cout<<token<<" ";
         switch(token){
             case OPER:
                 if(operator_stack.empty()){

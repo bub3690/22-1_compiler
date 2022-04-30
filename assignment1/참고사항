@@ -7,4 +7,4 @@
 flex spec.l #c언어 파일 생성
 g++ lex.yy.c -o 아웃파일명 -ll #컴파일
 ./a.out < text.txt
-
+또는 echo 수식 | ./a.out

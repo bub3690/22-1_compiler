@@ -27,7 +27,7 @@ ws {delim}+
 digit [0-9]
 positive_num (0|[1-9]{digit}*)
 negative_num ^[-]?[1-9]{digit}*
-oper_duplicated [-+]{2,}
+oper_duplicated [-+]{delim}*[-+]+
 oper [+-]
 
 
@@ -63,7 +63,6 @@ int main(){
     list<string>::iterator list_iter;
 
     while((token = yylex())){
-        cout<<token<<" ";
         switch(token){
             case OPER:
                 if(operator_stack.empty()){
