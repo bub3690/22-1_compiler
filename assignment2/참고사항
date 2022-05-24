@@ -1,0 +1,13 @@
+설치 : http://zeed.egloos.com/v/2141787
+
+설치방법 : sudo apt-get install bison
+
+기초실행 : 
+1. yacc만 하는경우
+
+yacc -d ex1.y // y.tab.h와 y.tab.c 가 생성
+g++ y.tab.c  -o a.out -ly
+echo 1 + 2 + 3 | ./a.out
+
+
+2. yacc & bison
