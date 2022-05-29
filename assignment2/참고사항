@@ -10,4 +10,9 @@ g++ y.tab.c  -o a.out -ly
 echo 1 + 2 + 3 | ./a.out
 
 
-2. yacc & bison
+2. yacc & lex
+
+yacc -d in2post2_calc.y
+lex in2post2_calc.l
+g++ y.tab.c lex.yy.c
+cat 파일명 | ./a.out
