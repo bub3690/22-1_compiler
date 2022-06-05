@@ -26,9 +26,9 @@ lines   :   lines statement
 
 statement   :   expr ';'    {printf("%g\n",$1);}
 
-expr    : expr '+' expr { $$ = $1 + $3; }
+expr    : expr '+' expr { $$ = $1 + $3;}
         | expr '-' expr { $$ = $1 - $3;}
-        | expr '*' expr { $$ = $1 * $3; }
+        | expr '*' expr { $$ = $1 * $3;}
         | expr '/' expr { $$ = $1 / $3;}
         | '(' expr ')'  { $$ = $2;}
         | '-' expr %prec UMINUS { $$ = - $2; }
