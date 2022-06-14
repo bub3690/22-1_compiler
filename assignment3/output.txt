@@ -1,0 +1,7 @@
+t0 = 2.0E-2 + 0.5
+a = t0
+//warning : type mismatch
+t1 = a * 2
+t2 = t1 + 15
+b = t2
+//warning : type mismatch

@@ -68,7 +68,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 36 "3address.y" /* yacc.c:1909  */
+#line 31 "3address.y" /* yacc.c:1909  */
 
         /* yylval에는 int,부동소수점,lexeme들이 담길 수 있다. 변수 타입들은 int_lval으로 받는다.*/
         int int_lval;

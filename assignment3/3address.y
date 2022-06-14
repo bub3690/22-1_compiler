@@ -8,18 +8,15 @@ int yylex(void);// 없으면 오류
 int lookup(const char *);
 
 struct symbol_table_struct {
-    char id_name[256];
+    char id_name[100];
     int type; // flag 값이 담기는 것. 1: int , 2: float
     // 심볼 테이블은 타입과 name으로 구성.
 };
 
-struct symbol_table_struct symbol_table[256];
-
-
+struct symbol_table_struct symbol_table[500];
 
 int symbol_length=0;
 int sym_index=0;
-
 
 enum {
     INT_TYPE =1,
@@ -29,8 +26,6 @@ int type_flag = 0;
 
 char temp_var[6];
 int temp_cnt = 0;
-
-
 
 %}
 %union {
@@ -83,7 +78,7 @@ assignment  :   IDENTIFIER EQUAL expr {
 
         // 출력후 타입 미스매치 warn
         if(type_flag != symbol_table[sym_index].type){
-            fprintf(stdout,"//warning : mismatch\n %d",type_flag,symbol_table[sym_index].type);
+            fprintf(stdout,"//warning : type mismatch\n");
         }
 
         type_flag = 0;
@@ -108,7 +103,8 @@ declaration : TYPE IDENTIFIER {
 
 expr :  FLOAT    {
                     type_flag = FLOAT_TYPE;
-                    strcpy($$,$1);}
+                    strcpy($$,$1);
+                    }
     |   INT     {
                 
                 type_flag = INT_TYPE;

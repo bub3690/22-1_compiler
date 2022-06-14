@@ -27,7 +27,7 @@ newline \n
 
 %%
 
-{number} { strcpy(yylval.string_lval,yytext); return FLOAT; }// 이 과제는 부동소수점만.
+{number} { strcpy(yylval.string_lval,yytext); return FLOAT; }// 이 과제는 부동소수점만 float로 인식.
 {integer} {strcpy(yylval.string_lval,yytext); return INT;}
 "int" { yylval.int_lval = INT_TYPE; return TYPE; }
 "float" { yylval.int_lval = FLOAT_TYPE; return TYPE;}

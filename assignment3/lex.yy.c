@@ -788,7 +788,7 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 30 "3address.l"
-{ strcpy(yylval.string_lval,yytext); return FLOAT; }// 이 과제는 부동소수점만.
+{ strcpy(yylval.string_lval,yytext); return FLOAT; }// 이 과제는 부동소수점만 float로 인식.
 	YY_BREAK
 case 2:
 YY_RULE_SETUP

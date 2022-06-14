@@ -73,18 +73,15 @@ int yylex(void);// 없으면 오류
 int lookup(const char *);
 
 struct symbol_table_struct {
-    char id_name[256];
+    char id_name[100];
     int type; // flag 값이 담기는 것. 1: int , 2: float
     // 심볼 테이블은 타입과 name으로 구성.
 };
 
-struct symbol_table_struct symbol_table[256];
-
-
+struct symbol_table_struct symbol_table[500];
 
 int symbol_length=0;
 int sym_index=0;
-
 
 enum {
     INT_TYPE =1,
@@ -96,9 +93,7 @@ char temp_var[6];
 int temp_cnt = 0;
 
 
-
-
-#line 102 "y.tab.c" /* yacc.c:339  */
+#line 97 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -156,14 +151,14 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 36 "3address.y" /* yacc.c:355  */
+#line 31 "3address.y" /* yacc.c:355  */
 
         /* yylval에는 int,부동소수점,lexeme들이 담길 수 있다. 변수 타입들은 int_lval으로 받는다.*/
         int int_lval;
         char string_lval[256];
     
 
-#line 167 "y.tab.c" /* yacc.c:355  */
+#line 162 "y.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -180,7 +175,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 184 "y.tab.c" /* yacc.c:358  */
+#line 179 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -478,8 +473,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    55,    55,    56,    57,    60,    64,    65,    71,    93,
-     109,   112,   118,   129,   136,   143,   150,   157
+       0,    50,    50,    51,    52,    55,    59,    60,    66,    88,
+     104,   108,   114,   125,   132,   139,   146,   153
 };
 #endif
 
@@ -1260,7 +1255,7 @@ yyreduce:
   switch (yyn)
     {
         case 8:
-#line 71 "3address.y" /* yacc.c:1646  */
+#line 66 "3address.y" /* yacc.c:1646  */
     {
         /* symbol table에서 가져오기. */
         sym_index = lookup((yyvsp[-2].string_lval));
@@ -1276,16 +1271,16 @@ yyreduce:
 
         // 출력후 타입 미스매치 warn
         if(type_flag != symbol_table[sym_index].type){
-            fprintf(stdout,"//warning : mismatch\n %d %d",type_flag,symbol_table[sym_index].type);
+            fprintf(stdout,"//warning : type mismatch\n");
         }
 
         type_flag = 0;
 }
-#line 1285 "y.tab.c" /* yacc.c:1646  */
+#line 1280 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 93 "3address.y" /* yacc.c:1646  */
+#line 88 "3address.y" /* yacc.c:1646  */
     {
         // declaration에서는 출력은 없다.
         // ERROR : already declared
@@ -1300,30 +1295,31 @@ yyreduce:
         symbol_length++;
         
     }
-#line 1304 "y.tab.c" /* yacc.c:1646  */
+#line 1299 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 109 "3address.y" /* yacc.c:1646  */
+#line 104 "3address.y" /* yacc.c:1646  */
     {
                     type_flag = FLOAT_TYPE;
-                    strcpy((yyval.string_lval),(yyvsp[0].string_lval));}
-#line 1312 "y.tab.c" /* yacc.c:1646  */
+                    strcpy((yyval.string_lval),(yyvsp[0].string_lval));
+                    }
+#line 1308 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 112 "3address.y" /* yacc.c:1646  */
+#line 108 "3address.y" /* yacc.c:1646  */
     {
                 
                 type_flag = INT_TYPE;
                 strcpy((yyval.string_lval), (yyvsp[0].string_lval));
 
                 }
-#line 1323 "y.tab.c" /* yacc.c:1646  */
+#line 1319 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 118 "3address.y" /* yacc.c:1646  */
+#line 114 "3address.y" /* yacc.c:1646  */
     {
                 // expr에서 identifier는 심볼테이블에 존재하는 것.
                 sym_index = lookup((yyvsp[0].string_lval));
@@ -1335,11 +1331,11 @@ yyreduce:
                 type_flag = symbol_table[sym_index].type;
                 strcpy((yyval.string_lval),(yyvsp[0].string_lval));
                 }
-#line 1339 "y.tab.c" /* yacc.c:1646  */
+#line 1335 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 129 "3address.y" /* yacc.c:1646  */
+#line 125 "3address.y" /* yacc.c:1646  */
     {
                             // expr 연산 exp. 새로운 임시변수 할당. 3 add code 출력하기.
                             sprintf(temp_var,"t%d",temp_cnt);
@@ -1347,11 +1343,11 @@ yyreduce:
                             strcpy((yyval.string_lval),temp_var);
                             fprintf(stdout,"%s = %s + %s\n",temp_var,(yyvsp[-2].string_lval),(yyvsp[0].string_lval));
                         }
-#line 1351 "y.tab.c" /* yacc.c:1646  */
+#line 1347 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 136 "3address.y" /* yacc.c:1646  */
+#line 132 "3address.y" /* yacc.c:1646  */
     {
                             // expr 연산 exp. 새로운 임시변수 할당. 3 add code 출력하기.
                             sprintf(temp_var,"t%d",temp_cnt);
@@ -1359,11 +1355,11 @@ yyreduce:
                             strcpy((yyval.string_lval),temp_var);
                             fprintf(stdout,"%s = %s - %s\n",temp_var,(yyvsp[-2].string_lval),(yyvsp[0].string_lval));
                         }
-#line 1363 "y.tab.c" /* yacc.c:1646  */
+#line 1359 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 143 "3address.y" /* yacc.c:1646  */
+#line 139 "3address.y" /* yacc.c:1646  */
     {
                             // expr 연산 exp. 새로운 임시변수 할당. 3 add code 출력하기.
                             sprintf(temp_var,"t%d",temp_cnt);
@@ -1371,11 +1367,11 @@ yyreduce:
                             strcpy((yyval.string_lval),temp_var);
                             fprintf(stdout,"%s = %s * %s\n",temp_var,(yyvsp[-2].string_lval),(yyvsp[0].string_lval));
                         }
-#line 1375 "y.tab.c" /* yacc.c:1646  */
+#line 1371 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 150 "3address.y" /* yacc.c:1646  */
+#line 146 "3address.y" /* yacc.c:1646  */
     {
                             // expr 연산 exp. 새로운 임시변수 할당. 3 add code 출력하기.
                             sprintf(temp_var,"t%d",temp_cnt);
@@ -1383,11 +1379,11 @@ yyreduce:
                             strcpy((yyval.string_lval),temp_var);
                             fprintf(stdout,"%s = %s / %s\n",temp_var,(yyvsp[-2].string_lval),(yyvsp[0].string_lval));
                         }
-#line 1387 "y.tab.c" /* yacc.c:1646  */
+#line 1383 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 157 "3address.y" /* yacc.c:1646  */
+#line 153 "3address.y" /* yacc.c:1646  */
     {
                                 // - 계수도 TEMP로
                                 sprintf(temp_var,"t%d",temp_cnt);
@@ -1395,11 +1391,11 @@ yyreduce:
                                 strcpy((yyval.string_lval),temp_var);
                                 fprintf(stdout, "%s = -%s\n", (yyval.string_lval), (yyvsp[0].string_lval));
                                 }
-#line 1399 "y.tab.c" /* yacc.c:1646  */
+#line 1395 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1403 "y.tab.c" /* yacc.c:1646  */
+#line 1399 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1627,7 +1623,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 167 "3address.y" /* yacc.c:1906  */
+#line 163 "3address.y" /* yacc.c:1906  */
 
 int lookup(const char *lexeme){
     int symbol_index = -1; // -1이면 아직 선언 안된 것.
